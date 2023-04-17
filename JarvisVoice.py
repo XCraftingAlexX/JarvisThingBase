@@ -15,7 +15,7 @@ class Assistant:
         self.speaker.setProperty("rate", 150)
         
         self.assistant = GenericAssistant("intents.json", intent_methods={"file": self.create_file})
-        self.assistant.train_model()
+        self.assistant.load_model()
 
         self.root = tk.Tk()
         self.label = tk.Label(text="Speak", font=("Arial", 120, "bold"))
@@ -33,12 +33,14 @@ class Assistant:
         while True:
             with speech_recognition.Microphone() as mic:
                 self.recognizer.adjust_for_ambient_noise(mic, duration=0.2)
+                print("Speak now!")
                 audio = self.recognizer.listen(mic)
             try:
                 text = self.recognizer.recognize_google(audio)
                 text = text.lower()
+                print("You said: {}".format(text))
 
-                if "hey bot" in text:
+                if "hey assistant" in text:
                     self.label.config(fg="red")
                     audio = self.recognizer.listen(mic)
                     text = self.recognizer.recognize_google(audio)
