@@ -16,7 +16,7 @@ reference_img = cv2.imread("reference.jpg")
 def check_face(frame):
     global face_match
     try:
-        if DeepFace.vqerify(frame, reference_img.copy())['verified']:
+        if DeepFace.verify(frame, reference_img.copy())['verified']:
             face_match = True
         else:
             face_match = False
