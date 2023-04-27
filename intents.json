@@ -19,10 +19,16 @@
             "tag": "name",
             "patterns": [
                 "What is your name?",
-                "What should I call you?"
+                "What should I call you?",
+                "You're name?",
+                "You're name is?",
+                "Who are you?",
+                "You?"
             ],
             "responses": [
-                "I am Jarvis, sir."
+                "I am Jarvis, sir.",
+                "I am Just A Really, Very Intelligent System, but you can call me Jarvis.",
+                "I am Jarvis, Just A Really, Very Intelligent System."
             ]
         },
         {
@@ -33,6 +39,25 @@
                 "New file"
             ],
             "responses": []
-        }
+        },
+        {
+            "tag": "your name",
+            "patterns": [
+                "What is my name?",
+                "Who am I?",
+                "What's my name?",
+                "My name?",
+                "My name is?",
+                "Me?"
+            ],
+            "responses": [
+                "You are Alex Sims.",
+                "You're Alex Sims.",
+                "You are Mr. Sims.",
+                "You're Mr. Sims.",
+                "Your name is Alex Sims.",
+                "Your name is Alex Sims, but you prefer to go by Lord Sims."
+            ]
+        },
     ]
 }
