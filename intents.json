@@ -20,15 +20,16 @@
             "patterns": [
                 "What is your name?",
                 "What should I call you?",
-                "You're name?",
-                "You're name is?",
+                "Your name?",
+                "Your name is?",
                 "Who are you?",
                 "You?"
             ],
             "responses": [
                 "I am Jarvis, sir.",
                 "I am Just A Really, Very Intelligent System, but you can call me Jarvis.",
-                "I am Jarvis, Just A Really, Very Intelligent System."
+                "I am Jarvis, Just A Really, Very Intelligent System.",
+                "I'm Slim Shady! Just kiding. I am Jarvis."
             ]
         },
         {
