@@ -18,39 +18,55 @@ for filename in os.listdir("references"):
     if img is not None:
         reference_imgs.append(img)
 
+models = ['VGG-Face', 'Facenet', 'OpenFace']
+
 def check_face(frame):
     global face_match
     for reference_img in reference_imgs:
         try:
-            if DeepFace.verify(frame, reference_img.copy())['verified']:
-                face_match = True
-            else:
-                face_match = False
+            for model in models:
+                result = DeepFace.verify(frame, reference_img.copy(), model_name=model)
+                if result['verified']:
+                    face_match = True
+                    return
         except ValueError:
-            face_match = False
+            pass
+    face_match = False
 
-
-while True:
-    ret, frame = cap.read()
-
-    if ret:
-        if counter % 30 == 0:
-            try:
-                threading.Thread(target=check_face, args=(frame.copy(),)).start()
-            except ValueError:
-                pass
+def recognize_faces():
+    global face_match
+    global counter
+    while True:
+        ret, frame = cap.read()
         counter += 1
 
-        if face_match:
-            cv2.putText(frame, "ALEX", (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 3)
-        else:
-            cv2.putText(frame, "NOT ALEX", (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 3)
+        if ret:
+            try:
+                if counter % 5 == 0:
+                    frame_copy = frame.copy()
+                    check_face(frame_copy)
+            except ValueError:
+                pass
 
-        cv2.imshow("video", frame)
+def render_video():
+    while True:
+        ret, frame = cap.read()
 
+        if ret:
+            if face_match:
+                cv2.putText(frame, "ALEX", (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 3)
+            else:
+                cv2.putText(frame, "NOT ALEX", (20, 450), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 3)
 
-    key = cv2.waitKey(1)
-    if key == ord("q"):
-        break
+            cv2.imshow("video", frame)
 
-cv2.destroyAllWindows()
+        key = cv2.waitKey(1)
+        if key == ord("q"):
+            break
+
+    cv2.destroyAllWindows()
+
+video_thread = threading.Thread(target=render_video)
+video_thread.start()
+
+recognize_faces()
