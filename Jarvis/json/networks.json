@@ -1,0 +1,20 @@
+{
+    "password": "Her5hey5",
+    "networks": [
+        {
+            "name": "John Wilkes Bluetooth",
+            "interface": "Wi-Fi",
+            "ssid": "John Wilkes Bluetooth"
+        },
+        {
+            "name": "PRETTY_FLY_FOR_A_WIFI",
+            "interface": "Wi-Fi",
+            "ssid": "PRETTY_FLY_FOR_A_WIFI"
+        },
+        {
+            "name": "NY_GIANTS_BLOW",
+            "interface": "Wi-Fi",
+            "ssid": "NY_GIANTS_BLOW"
+        }
+    ]
+}
